@@ -1,0 +1,45 @@
+/* resetting css */
+*{
+    padding: 0;
+    margin: 0;
+}
+/* some classes will be universal */
+
+.body{
+    /* we came one folder out of the css folder to access the file  */
+    background: url("../images/background.png");
+    min-height: 100vh; 
+    /* vh means viewport height that is jis bhi device main app dekh rhe ho uske 100vh */
+    background-size: 100vw 100vh; 
+    /* this will not let the background image to repeat */
+    background-repeat: no-repeat; 
+    /* this will let the furure items to come in the centre */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* board is an id */
+
+#board{
+    background: white;
+    /* vh or vw main jo bra hoga - vmax */
+    width: 90vmin;
+    height: 92vmin;
+    /* border to the box */
+    border: 0.5rem solid #FF7518;
+    border-radius: 0.5rem;
+    /* display grid making the box a grid */
+    display: grid;
+    /* 18 rows in the perunit grid width 1fr */
+    /* made a grid of 18rows, 18 cloumns */
+    grid-template-rows: repeat(18, 1fr);
+    grid-template-columns: repeat(18, 1fr);
+
+}
+
+.head{
+    background-color: black;
+}
+.food{
+    background-color: red;
+}
