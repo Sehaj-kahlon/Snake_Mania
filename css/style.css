@@ -36,10 +36,17 @@
     grid-template-columns: repeat(18, 1fr);
 
 }
-
+/* heead of the snake */
 .head{
     background-color: black;
 }
+/* food in the game  */
 .food{
     background-color: red;
+    
+}
+/* body of the snake */
+.snake{
+    background-color: yellow;
+    
 }
