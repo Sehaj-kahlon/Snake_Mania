@@ -42,8 +42,14 @@ function gameEngine(){
     board.innerHTML = "";
     // what we have to do is as the snkae ests we will insert the elements in the snakeArray
     snakeArr.forEach((e, index) =>{
-        // creating a new element 
+        // creating a new element like in this we are making a div
         snakeElement = document.createElement('div');
+        // adding some css in the element with js
+        // to place at the particular row in the grid
+        snakeElement.style.gridRowStart = e.y;
+        // place at the particular column 
+        snakeElemnt.style.gridColumnStart = e.x;
+        // a
     })
 }
 window.requestAnimationFrame(main);
