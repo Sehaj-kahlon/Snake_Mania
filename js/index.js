@@ -1,6 +1,6 @@
 // defining some constants
 // game constants and variables
-let inpDir = { x: 0, y: 0 };
+let inputDir = { x: 0, y: 0 };
 // initializing audio: so we do not want to change these later so we will use const
 const foodSound = new Audio("../sounds/food.mp3");
 const gameOverSound = new Audio("../sounds/gameover.mp3");
@@ -37,8 +37,18 @@ function main(ctime) {
   // making a method as gameEngine
   gameEngine();
 }
-function isCollide(sarr){
-    return false;
+function isCollide(snake){
+    //if the snake bumps into itself
+    for(let i = 1; i< snake.length; i++){
+        //equating x and y coordinated of the snake 
+        if((snake[i].x === snake[0].x ) && (snake[i].y === snake[0].y)){
+            return true;
+        }
+    }
+     // if the snake collides with the grid 
+    if(snake[0].x >= 18 || snake[0].x <=0 ||snake[0].y >= 18 || snake[0].y <=0 ){
+        return true;
+    }
 }
 function gameEngine() {
   // pt 1 updatig the sanke array and food
@@ -53,21 +63,26 @@ function gameEngine() {
   }
   // it food is eaten then increment the score and regenerate the food
   if(snakeArr[0].y === food.y && snakeArr[0].x === food.x){
+    // increment the score 
+    score += 1;
     //when food is eaten then we are adding a more part to the snake array 
     //also in the direction of motion ???
     snakeArr.unshift({x: snakeArr[0].x + inputDir.x, y: snakeArr[0].y + inputDir.y});
     //generate food at a arandom location  //formulae to generate random number bw a and b
     let a = 1;
     let b = 17;
-    food = {x:z+Math.round(a+ (b-a) * Math.random())}
+    food = {x: Math.round(a+ (b-a) * Math.random()), y: Math.round(a+ (b-a) * Math.random())};
   }
   //moving the snake - will itereate over the body of the entire snake
 
   for(let i = snakeArr.length -2; i >= 0; i--){
-        const element = array[i];
-        //
+        //snakeArr[i+1] = snakeArr[i] this will not work for the index zero element 'this will give refrencing problem 
+        // using destructuring ... then it will be a new array creating a new object 
         snakeArr[i+1] = {...snakeArr[i]};
   }
+  snakeArr[0].x += inputDir.x;
+  snakeArr[0].y += inputDir.y;
+
 
   // pt 2 display the food
   //  display the snake and

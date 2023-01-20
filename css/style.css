@@ -39,14 +39,21 @@
 /* heead of the snake */
 .head{
     background-color: black;
+    border:  0.25 vmin solid pink;
+    border-radius: 12px;
+    transform: scale(1.02); 
+    /* increasing the size of the head by 2% */
 }
 /* food in the game  */
 .food{
     background-color: red;
+    border:  0.25 vmin solid grey;
+    border-radius: 8px;
     
 }
 /* body of the snake */
 .snake{
     background-color: yellow;
-    
+    border:  0.25 vmin solid pink;
+    border-radius: 12px;
 }
