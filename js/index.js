@@ -6,7 +6,7 @@ const foodSound = new Audio("../sounds/food.mp3");
 const gameOverSound = new Audio("../sounds/gameover.mp3");
 const backgroundSound = new Audio("../sounds/backgroundmusic.mp3");
 const moveSound = new Audio("../sounds/move.mp3");
-let speed = 2;
+let speed = 5;
 let score = 0;
 let lastPaintTIme = 0;
 let snakeArr = [
@@ -65,8 +65,14 @@ function gameEngine() {
   if(snakeArr[0].y === food.y && snakeArr[0].x === food.x){
     // increment the score 
     score += 1;
+    if(score>hiscoreval){
+        hiscoreval = score;
+        localStorage.setItem("hiscore", JSON.stringify(hiscoreval));
+        HiScoreBox.innerHTML = "High Score : " + hiscoreval;
+    }
     //when food is eaten then we are adding a more part to the snake array 
     //also in the direction of motion ???
+    scoreBox.innerHTML = "Score : " + score;
     snakeArr.unshift({x: snakeArr[0].x + inputDir.x, y: snakeArr[0].y + inputDir.y});
     //generate food at a arandom location  //formulae to generate random number bw a and b
     let a = 1;
@@ -115,6 +121,16 @@ function gameEngine() {
   board.appendChild(foodElement);
 }
 // main logic
+// backgroundSound.play();
+let hiscore = localStorage.getItem("hiscore");
+if(hiscore === null){
+    hiscoreval = 0;
+    localStorage.setItem("hiscore", JSON.stringify(hiscoreval))
+}
+else{
+    hiscoreval = JSON.parse(hiscore);
+    HiScoreBox.innerHTML = "High Score : " + hiscore;
+}
 window.requestAnimationFrame(main);
 // if any button is pressed on the keyboard than this funciton is fired
 window.addEventListener('keydown', e =>{
