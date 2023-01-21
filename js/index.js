@@ -58,6 +58,7 @@ function gameEngine() {
     inputDir = { x: 0, y: 0 };
     alert("Game Over! Press any Key to play again!");
     score = 0;
+    speed = 4;
     scoreBox.innerHTML = "Score : " + score;
     snakeArr = [{ x: 13, y: 15 }];
   }
