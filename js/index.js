@@ -60,7 +60,6 @@ function gameEngine() {
     score = 0;
     scoreBox.innerHTML = "Score : " + score;
     snakeArr = [{x: 13, y: 15}];
-    backgroundSound.play();
   }
   // it food is eaten then increment the score and regenerate the food
   if(snakeArr[0].y === food.y && snakeArr[0].x === food.x){
@@ -138,6 +137,7 @@ window.requestAnimationFrame(main);
 window.addEventListener('keydown', e =>{
     //inpDir is a varaible (velocity) or direction of the snake 
     inputDir = {x: 0, y:1} //start the game if any button is pressed on the keyboard
+    backgroundSound.play();
     moveSound.play(); //play the sound
     // trting to detect which key is pressed
     switch(e.key){
