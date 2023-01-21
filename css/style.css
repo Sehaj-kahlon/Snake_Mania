@@ -40,7 +40,7 @@
 }
 #scoreBox{
     position: absolute;
-    top: 210px;
+    top: 220px;
     right: 200px;
     font-size: 39px;
     font-weight: bold;
@@ -49,8 +49,8 @@
 }
 #HiScoreBox{
     position: absolute;
-    top: 300px;
-    right: 130px;
+    top: 320px;
+    right: 100px;
     font-size: 39px;
     font-weight: bold;
     color: white;
@@ -58,9 +58,9 @@
 }
 /* heead of the snake */
 .head{
-    background-color: black;
+    background-color: rgb(3, 40, 3);
     border:  0.25 vmin solid pink;
-    border-radius: 12px;
+    border-radius: 16px;
     transform: scale(1.02); 
     /* increasing the size of the head by 2% */
 }
@@ -68,12 +68,12 @@
 .food{
     background-color: red;
     border:  0.25 vmin solid grey;
-    border-radius: 8px;
+    border-radius: 20px;
     
 }
 /* body of the snake */
 .snake{
-    background-color: yellow;
+    background-color: green;
     border:  0.25 vmin solid pink;
-    border-radius: 12px;
+    border-radius: 16px;
 }
