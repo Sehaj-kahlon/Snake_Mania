@@ -6,7 +6,7 @@ const foodSound = new Audio("../sounds/food.mp3");
 const gameOverSound = new Audio("../sounds/gameover.mp3");
 const backgroundSound = new Audio("../sounds/backgroundmusic.mp3");
 const moveSound = new Audio("../sounds/move.mp3");
-let speed = 5;
+let speed = 4;
 let score = 0;
 let lastPaintTIme = 0;
 let snakeArr = [
@@ -37,59 +37,65 @@ function main(ctime) {
   // making a method as gameEngine
   gameEngine();
 }
-function isCollide(snake){
-    //if the snake bumps into itself
-    for(let i = 1; i< snake.length; i++){
-        //equating x and y coordinated of the snake 
-        if((snake[i].x === snake[0].x ) && (snake[i].y === snake[0].y)){
-            return true;
-        }
+function isCollide(snake) {
+  //if the snake bumps into itself
+  for (let i = 1; i < snake.length; i++) {
+    //equating x and y coordinated of the snake
+    if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) {
+      return true;
     }
-     // if the snake collides with the grid 
-    if(snake[0].x >= 18 || snake[0].x <=0 ||snake[0].y >= 18 || snake[0].y <=0 ){
-        return true;
-    }
+  }
+  // if the snake collides with the grid
+  if (snake[0].x >= 18 || snake[0].x <= 0 || snake[0].y >= 18 || snake[0].y <= 0) {
+    return true;
+  }
 }
 function gameEngine() {
   // pt 1 updatig the sanke array and food
-  if(isCollide(snakeArr)){
+  if (isCollide(snakeArr)) {
     gameOverSound.play();
     backgroundSound.pause();
-    inputDir = {x: 0, y: 0};
+    inputDir = { x: 0, y: 0 };
     alert("Game Over! Press any Key to play again!");
     score = 0;
     scoreBox.innerHTML = "Score : " + score;
-    snakeArr = [{x: 13, y: 15}];
+    snakeArr = [{ x: 13, y: 15 }];
   }
   // it food is eaten then increment the score and regenerate the food
-  if(snakeArr[0].y === food.y && snakeArr[0].x === food.x){
-    // increment the score 
+  if (snakeArr[0].y === food.y && snakeArr[0].x === food.x) {
+    // increment the score
     score += 1;
     foodSound.play();
-    if(score>hiscoreval){
-        hiscoreval = score;
-        localStorage.setItem("hiscore", JSON.stringify(hiscoreval));
-        HiScoreBox.innerHTML = "High Score : " + hiscoreval;
+    if (score > hiscoreval) {
+      hiscoreval = score;
+      localStorage.setItem("hiscore", JSON.stringify(hiscoreval));
+      HiScoreBox.innerHTML = "High Score : " + hiscoreval;
     }
-    //when food is eaten then we are adding a more part to the snake array 
+    //after every 5interval speed increase by one
+    if (score % 5 === 0) {
+      speed++;
+    }
+    //when food is eaten then we are adding a more part to the snake array
     //also in the direction of motion ???
     scoreBox.innerHTML = "Score : " + score;
-    snakeArr.unshift({x: snakeArr[0].x + inputDir.x, y: snakeArr[0].y + inputDir.y});
+    snakeArr.unshift({ x: snakeArr[0].x + inputDir.x, y: snakeArr[0].y + inputDir.y });
     //generate food at a arandom location  //formulae to generate random number bw a and b
     let a = 1;
     let b = 17;
-    food = {x: Math.round(a+ (b-a) * Math.random()), y: Math.round(a+ (b-a) * Math.random())};
+    food = {
+      x: Math.round(a + (b - a) * Math.random()),
+      y: Math.round(a + (b - a) * Math.random()),
+    };
   }
   //moving the snake - will itereate over the body of the entire snake
 
-  for(let i = snakeArr.length -2; i >= 0; i--){
-        //snakeArr[i+1] = snakeArr[i] this will not work for the index zero element 'this will give refrencing problem 
-        // using destructuring ... then it will be a new array creating a new object 
-        snakeArr[i+1] = {...snakeArr[i]};
+  for (let i = snakeArr.length - 2; i >= 0; i--) {
+    //snakeArr[i+1] = snakeArr[i] this will not work for the index zero element 'this will give refrencing problem
+    // using destructuring ... then it will be a new array creating a new object
+    snakeArr[i + 1] = { ...snakeArr[i] };
   }
   snakeArr[0].x += inputDir.x;
   snakeArr[0].y += inputDir.y;
-
 
   // pt 2 display the food
   //  display the snake and
@@ -106,11 +112,10 @@ function gameEngine() {
     snakeElement.style.gridColumnStart = e.x;
     // appending the snakeELement as a child in the board
     // adding a class to the element snakeElement bcs we want to add css to the class
-    if(index === 0){
-        snakeElement.classList.add("head");
-    }
-    else{
-        snakeElement.classList.add("snake")
+    if (index === 0) {
+      snakeElement.classList.add("head");
+    } else {
+      snakeElement.classList.add("snake");
     }
     board.appendChild(snakeElement);
   });
@@ -124,48 +129,47 @@ function gameEngine() {
 // main logic
 // backgroundSound.play();
 let hiscore = localStorage.getItem("hiscore");
-if(hiscore === null){
-    hiscoreval = 0;
-    localStorage.setItem("hiscore", JSON.stringify(hiscoreval))
-}
-else{
-    hiscoreval = JSON.parse(hiscore);
-    HiScoreBox.innerHTML = "High Score : " + hiscore;
+if (hiscore === null) {
+  hiscoreval = 0;
+  localStorage.setItem("hiscore", JSON.stringify(hiscoreval));
+} else {
+  hiscoreval = JSON.parse(hiscore);
+  HiScoreBox.innerHTML = "High Score : " + hiscore;
 }
 window.requestAnimationFrame(main);
 // if any button is pressed on the keyboard than this funciton is fired
-window.addEventListener('keydown', e =>{
-    //inpDir is a varaible (velocity) or direction of the snake 
-    inputDir = {x: 0, y:1} //start the game if any button is pressed on the keyboard
-    backgroundSound.play();
-    moveSound.play(); //play the sound
-    // trting to detect which key is pressed
-    switch(e.key){
-        case "ArrowUp":
-            console.log("ArrowUp");
-            inputDir.x = 0;
-            inputDir.y = -1;
-            break;
+window.addEventListener("keydown", (e) => {
+  backgroundSound.play();
+  //inpDir is a varaible (velocity) or direction of the snake
+  inputDir = { x: 0, y: 1 }; //start the game if any button is pressed on the keyboard
+  moveSound.play(); //play the sound
+  // trting to detect which key is pressed
+  switch (e.key) {
+    case "ArrowUp":
+      console.log("ArrowUp");
+      inputDir.x = 0;
+      inputDir.y = -1;
+      break;
 
-        case "ArrowDown":
-            console.log("ArrowDown");
-            inputDir.x = 0;
-            inputDir.y = 1;
-            break;
-            
-        case "ArrowLeft":
-            console.log("ArrowLeft");
-            inputDir.x = -1;
-            inputDir.y = 0;
-            break;
-            
-        case "ArrowRight":
-            console.log("ArrowRight");
-            inputDir.x = 1;
-            inputDir.y = 0;
-            break;
+    case "ArrowDown":
+      console.log("ArrowDown");
+      inputDir.x = 0;
+      inputDir.y = 1;
+      break;
 
-        default: 
-            break;
-    }
+    case "ArrowLeft":
+      console.log("ArrowLeft");
+      inputDir.x = -1;
+      inputDir.y = 0;
+      break;
+
+    case "ArrowRight":
+      console.log("ArrowRight");
+      inputDir.x = 1;
+      inputDir.y = 0;
+      break;
+
+    default:
+      break;
+  }
 });
