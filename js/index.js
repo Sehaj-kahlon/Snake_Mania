@@ -11,7 +11,7 @@ let score = 0;
 let lastPaintTIme = 0;
 let snakeArr = [
   // this is the starting / head of the snake
-  { x: 13, y: 15 },
+  { x: 9, y: 9 },
 ];
 // food is an object
 food = { x: 10, y: 15 };
@@ -57,14 +57,16 @@ function gameEngine() {
     backgroundSound.pause();
     inputDir = {x: 0, y: 0};
     alert("Game Over! Press any Key to play again!");
+    score = 0;
+    scoreBox.innerHTML = "Score : " + score;
     snakeArr = [{x: 13, y: 15}];
     backgroundSound.play();
-    score = 0;
   }
   // it food is eaten then increment the score and regenerate the food
   if(snakeArr[0].y === food.y && snakeArr[0].x === food.x){
     // increment the score 
     score += 1;
+    foodSound.play();
     if(score>hiscoreval){
         hiscoreval = score;
         localStorage.setItem("hiscore", JSON.stringify(hiscoreval));
