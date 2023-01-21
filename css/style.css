@@ -59,7 +59,6 @@
 /* heead of the snake */
 .head{
     background-color: rgb(3, 40, 3);
-    border:  0.25vmin solid  #39FF14;
     border-radius: 16px;
     transform : scale(1.02); 
     /* increasing the size of the head by 2% */
@@ -77,8 +76,8 @@
 /* body of the snake */
 .snake{
     background-color: green;
-    border:  0.25vmin solid  #39FF14.;
-    border-radius: 16px;
+    border:  0.25vmin solid  darkgreen;
+    border-radius : 16px;
 }
 @keyframes example {
     from {border: 0.75vmin solid rgb(232, 232, 10);}
