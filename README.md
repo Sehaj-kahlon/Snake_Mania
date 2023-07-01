@@ -22,6 +22,7 @@ Snake Mania is an addictive and exciting game built using HTML, CSS, and JavaScr
 PLAY NOW
 
 ## Demo Video
+https://github.com/Sehaj-kahlon/Snake_Mania/assets/114355575/0c37e377-70a2-416e-975e-b599f0f66aa2
 
 ## Deployed Website
 
