@@ -23,7 +23,7 @@ PLAY NOW
 
 ## Important
 
-Due to the control scheme utilizing arrow keys (up, down, left, right), Snake Mania is exclusively designed for desktop platforms, providing an optimal gaming experience on larger screens with keyboard input capabilities.
+Due to the control scheme utilizing arrow keys (up, down, left, right), SnakeMania is exclusively designed for desktop platforms, providing an optimal gaming experience on larger screens with keyboard input capabilities.
 
 ## Demo Video
 https://github.com/Sehaj-kahlon/Snake_Mania/assets/114355575/0c37e377-70a2-416e-975e-b599f0f66aa2
