@@ -21,6 +21,10 @@ Snake Mania is an addictive and exciting game built using HTML, CSS, and JavaScr
 
 PLAY NOW
 
+## Important
+
+Due to the control scheme utilizing arrow keys (up, down, left, right), Snake Mania is exclusively designed for desktop platforms, providing an optimal gaming experience on larger screens with keyboard input capabilities.
+
 ## Demo Video
 
 ## Deployed Website
